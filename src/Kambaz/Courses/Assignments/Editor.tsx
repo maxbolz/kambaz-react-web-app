@@ -1,102 +1,102 @@
+import { FormGroup, FormControl, FormLabel, FormSelect, FormCheck, Button, Row, Col } from "react-bootstrap";
+import AssignmentsControlsFooter from "./AssignmentsControlsFooter";
+import { RxCross2 } from "react-icons/rx";
+
 export default function AssignmentEditor() {
     return (
-        <div id="wd-assignments-editor">
-            <label htmlFor="wd-name"><b>Assignment Name</b></label><br /><br />
-            <input id="wd-name" value="A1 - ENV + HTML" /><br /><br />
-            <textarea id="wd-description">
-                The assignment is available online Submit a link to the landing page of your Web application running on Netlify. The landing page should include the following: Your full name and section Links to the Kambaz application Links to all relevant source code repositories The Kambaz application should include a link to navigate back to the landing page.
-            </textarea><br /><br />
-            <table>
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-points">Points</label>
-                    </td>
-                    <td>
-                        <input id="wd-points" value={100} />
-                    </td>
-                </tr>
-                <br />
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-group">Assignment Group</label>
-                    </td>
-                    <td>
-                        <select id="wd-group">
-                            <option>ASSIGNMENTS</option>
-                        </select>
-                    </td>
-                </tr>
-                <br />
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-display-grade-as">Display Grade As</label>
-                    </td>
-                    <td>
-                        <select id="wd-display-grade-as">
-                            <option>Percentage</option>
-                        </select>
-                    </td>
-                </tr>
-                <br />
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-submission-type">Submission Type</label>
-                    </td>
-                    <td>
-                        <select id="wd-submission-type">
-                            <option>Online</option>
-                        </select>
-                        <br /><br />
-                        Online Entry Options
-                        <br />
+        <div>
+            <FormGroup className="mb-4" controlId="wd-assignment-name">
+                <FormLabel>Assignment Name</FormLabel>
+                <FormControl type="text" value="A1 - ENV + HTML" />
+            </FormGroup>
+            <FormGroup className="mb-4">
+                <FormControl as="textarea" rows={9} value="The assignment is available online 
+                
+Submit a link to the landing page of your Web application running on Netlify. 
 
-                        <input type="checkbox" id="wd-text-entry"></input>
-                        <label htmlFor="wd-text-entry">Text Entry</label><br />
+The landing page should include the following: 
+        •   Your full name and section Links to the Kambaz application 
+        •   Links to all relevant source code repositories 
 
-                        <input type="checkbox" id="wd-website-url"></input>
-                        <label htmlFor="wd-website-url">Website URL</label><br />
-
-                        <input type="checkbox" id="wd-media-recordings"></input>
-                        <label htmlFor="wd-media-recordings">Media Recordings</label><br />
-
-                        <input type="checkbox" id="wd-student-annotation"></input>
-                        <label htmlFor="wd-student-annotation">Student Annotation</label><br />
-
-                        <input type="checkbox" id="wd-file-upload"></input>
-                        <label htmlFor="wd-file-upload">File Uploads</label><br />
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-assign-to">Assign</label>
-                    </td>
-                    <td>
-                        <label htmlFor="wd-assign-to">Assign to</label><br />
-                        <input type="text" value="Everyone" id="wd-assign-to"></input>
-                        <br /><br />
-                        <label htmlFor="wd-due-date">Due</label><br />
-                        <input type="date" value="2024-05-13" id="wd-due-date"></input>
-                        <br /><br />
-                        <td>
-                            <label htmlFor="wd-available-from">Available from</label><br />
-                            <input type="date" value="2024-05-06" id="wd-available-from"></input>
-                        </td>
-                        <td>
-                            <label htmlFor="wd-available-until">Until</label><br />
-                            <input type="date" value="2024-05-20" id="wd-available-until"></input>
-                        </td>
-                    </td>
-                </tr>
-            </table>
-            <hr></hr>
-            <table width="100%">
-                <tr>
-                    <td width="100%" align="right">
-                        <button>Cancel</button>
-                        <button>Save</button>
-                    </td>
-                </tr>
-            </table>
+The Kambaz application should include a link to navigate back to the landing page." />
+            </FormGroup>
+            <div className="container">
+                <div className="d-flex flex-column align-items-end">
+                    <Row className="mb-4 w-100">
+                        <Col xs={4} className="text-end">
+                            <FormLabel className="me-2 mb-0 text-nowrap">Points</FormLabel>
+                        </Col>
+                        <Col xs={8}>
+                            <FormControl type="text" value="100" />
+                        </Col>
+                    </Row>
+                    <Row className="mb-4 w-100">
+                        <Col xs={4} className="text-end">
+                            <FormLabel className="me-2 mb-0 text-nowrap">Assignment Group</FormLabel>
+                        </Col>
+                        <Col xs={8}>
+                            <FormSelect>
+                                <option selected>ASSIGNMENTS</option>
+                            </FormSelect>
+                        </Col>
+                    </Row>
+                    <Row className="mb-4 w-100">
+                        <Col xs={4} className="text-end">
+                            <FormLabel className="me-2 mb-0 text-nowrap">Display Grade as</FormLabel>
+                        </Col>
+                        <Col xs={8}>
+                            <FormSelect>
+                                <option selected>Percentage</option>
+                            </FormSelect>
+                        </Col>
+                    </Row>
+                    <Row className="mb-4 w-100">
+                        <Col xs={4} className="text-end">
+                            <FormLabel className="me-2 mb-0 text-nowrap">Submission Type</FormLabel>
+                        </Col>
+                        <Col xs={8}>
+                            <FormGroup className="border p-3 rounded-2">
+                                <FormSelect className="mb-4"><option selected>Online</option></FormSelect>
+                                <FormLabel className="fw-bold">Online Entry Options</FormLabel>
+                                <FormCheck label="Text Entry" />
+                                <FormCheck label="Website URL" />
+                                <FormCheck label="Media Recordings" />
+                                <FormCheck label="Student Annotation" />
+                                <FormCheck label="File Uploads" />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row className="mb-4 w-100">
+                        <Col xs={4} className="text-end">
+                            <FormLabel className="me-2 mb-0 text-nowrap">Assign</FormLabel>
+                        </Col>
+                        <Col xs={8}>
+                            <FormGroup className="border p-3 rounded-2">
+                                <FormLabel className="fw-bold">Assign to</FormLabel>
+                                <div className="border p-1 rounded-2 mb-4">
+                                    <Button variant="primary bg-secondary border-0 text-black">
+                                        Everyone <RxCross2 className="ms-3" />
+                                    </Button>
+                                </div>
+                                <FormLabel className="fw-bold">Due</FormLabel>
+                                <FormControl type="date" value="2024-05-13" className="mb-4" />
+                                <Row>
+                                    <Col xs={6}>
+                                        <FormLabel className="fw-bold text-nowrap">Available from</FormLabel>
+                                        <FormControl type="date" value="2024-05-06" />
+                                    </Col>
+                                    <Col xs={6}>
+                                        <FormLabel className="fw-bold text-nowrap">Until</FormLabel>
+                                        <FormControl type="date" value="2024-05-20" />
+                                    </Col>
+                                </Row>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                </div>
+            </div>
+            <hr />
+            <AssignmentsControlsFooter />
         </div>
     );
 }
