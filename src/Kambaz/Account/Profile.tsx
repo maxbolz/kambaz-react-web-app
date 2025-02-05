@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Form, FormSelect, Button } from "react-bootstrap";
+import { Form, FormSelect } from "react-bootstrap";
 
 export default function Profile() {
     return (
