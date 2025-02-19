@@ -1,5 +1,5 @@
 import { Table } from "react-bootstrap";
-import { FaUserCircle, FaPaw } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import * as db from "../../Database";
 export default function PeopleTable() {
