@@ -1,13 +1,15 @@
 import { FormGroup, FormControl, FormLabel, FormSelect, FormCheck, Button, Row, Col } from "react-bootstrap";
 import AssignmentsControlsFooter from "./AssignmentsControlsFooter";
 import { RxCross2 } from "react-icons/rx";
+import { useLocation } from "react-router";
 
 export default function AssignmentEditor() {
+    const { pathname } = useLocation();
     return (
         <div>
             <FormGroup className="mb-4" controlId="wd-assignment-name">
                 <FormLabel>Assignment Name</FormLabel>
-                <FormControl type="text" value="A1 - ENV + HTML" />
+                <FormControl type="text" value={`${pathname.split("/")[5]}`} />
             </FormGroup>
             <FormGroup className="mb-4">
                 <FormControl as="textarea" rows={9} value="The assignment is available online 
