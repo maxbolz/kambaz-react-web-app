@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addCourse, updateCourse, deleteCourse, editCourse } from "./Courses/reducer";
 import { enrollments } from "./Database";
+import FacultyProtected from "./Account/FacultyProtected";
 
 export default function Dashboard() {
 
@@ -29,24 +30,26 @@ export default function Dashboard() {
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
-            <div className="d-flex justify-content-between align-items-center">
-                <h5>New Course</h5>
-                <div>
-                    <button className="btn btn-primary float-end"
-                        id="wd-add-new-course-click"
-                        onClick={() => dispatch(addCourse({ name: courseName, description: courseDescription }))} > Add </button>
-                    <button className="btn btn-warning float-end me-2"
-                        onClick={updateCourseWithCheck} id="wd-update-course-click">
-                        Update
-                    </button>
+            <FacultyProtected>
+                <div className="d-flex justify-content-between align-items-center">
+                    <h5>New Course</h5>
+                    <div>
+                        <button className="btn btn-primary float-end"
+                            id="wd-add-new-course-click"
+                            onClick={() => dispatch(addCourse({ name: courseName, description: courseDescription }))} > Add </button>
+                        <button className="btn btn-warning float-end me-2"
+                            onClick={updateCourseWithCheck} id="wd-update-course-click">
+                            Update
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <br />
-            <FormControl value={courseName} className="mb-2"
-                onChange={(e) => setCourseName(e.target.value)} />
-            <FormControl as="textarea" value={courseDescription} rows={3}
-                onChange={(e) => setCourseDescription(e.target.value)} />
-            <hr /><br />
+                <br />
+                <FormControl value={courseName} className="mb-2"
+                    onChange={(e) => setCourseName(e.target.value)} />
+                <FormControl as="textarea" value={courseDescription} rows={3}
+                    onChange={(e) => setCourseDescription(e.target.value)} />
+                <hr /><br />
+            </FacultyProtected>
             <h2 id="wd-dashboard-published">Published Courses ({filteredCourses.length})</h2> <hr />
             <div id="wd-dashboard-courses">
                 <Row xs={1} md={5} className="g-4">
@@ -62,24 +65,26 @@ export default function Dashboard() {
                                         <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                                             {course.description} </Card.Text>
                                         <Button variant="primary"> Go </Button>
-                                        <Button onClick={(event) => {
-                                            event.preventDefault();
-                                            dispatch(deleteCourse(course._id));
-                                        }} className="btn btn-danger float-end"
-                                            id="wd-delete-course-click">
-                                            Delete
-                                        </Button>
-                                        <Button id="wd-edit-course-click"
-                                            onClick={(event) => {
+                                        <FacultyProtected>
+                                            <Button onClick={(event) => {
                                                 event.preventDefault();
-                                                dispatch(editCourse(course._id));
-                                                setCurCourse(course);
-                                                setCourseName(course.name);
-                                                setCourseDescription(course.description);
-                                            }}
-                                            className="btn btn-warning me-2 float-end" >
-                                            Edit
-                                        </Button>
+                                                dispatch(deleteCourse(course._id));
+                                            }} className="btn btn-danger float-end"
+                                                id="wd-delete-course-click">
+                                                Delete
+                                            </Button>
+                                            <Button id="wd-edit-course-click"
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    dispatch(editCourse(course._id));
+                                                    setCurCourse(course);
+                                                    setCourseName(course.name);
+                                                    setCourseDescription(course.description);
+                                                }}
+                                                className="btn btn-warning me-2 float-end" >
+                                                Edit
+                                            </Button>
+                                        </FacultyProtected>
                                     </Card.Body>
                                 </Link>
                             </Card>

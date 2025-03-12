@@ -3,6 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate, useParams } from "react-router";
+import FacultyProtected from "../../Account/FacultyProtected";
 
 export default function AssignmentsControls() {
 
@@ -16,10 +17,12 @@ export default function AssignmentsControls() {
                 <FormControl type="text" size="lg" placeholder="Search..." className="w-auto ps-5 py-2" />
             </FormGroup>
             <div>
-                <Button onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments/${uuidv4()}`)} variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
-                    <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-                    Assignment
-                </Button>
+                <FacultyProtected>
+                    <Button onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments/${uuidv4()}`)} variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
+                        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+                        Assignment
+                    </Button>
+                </FacultyProtected>
                 <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-add-module-btn">
                     <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                     Group

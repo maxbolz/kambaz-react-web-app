@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
 import AssignmentDeleter from "./AssignmentDeleter";
+import FacultyProtected from "../../Account/FacultyProtected";
 
 export default function Assignments() {
     const { cid } = useParams();
@@ -39,7 +40,9 @@ export default function Assignments() {
                                 <br />
                                 <b>Due</b> May 13 at 11:59 pm | 100 pts
                             </div>
-                            <FaTrash className="text-danger me-2 mb-1" onClick={handleShow} />
+                            <FacultyProtected>
+                                <FaTrash className="text-danger me-2 mb-1" onClick={handleShow} />
+                            </FacultyProtected>
                             <LessonControlButtons />
                             <AssignmentDeleter show={show} handleClose={handleClose} dialogTitle="Are you sure?" assignmentId={assignment._id} />
                         </ListGroup.Item>
