@@ -4,13 +4,21 @@ import { TfiWrite } from "react-icons/tfi";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import AssignmentsControls from "./AssignmentsControls";
-import { useParams, useLocation, Link } from "react-router";
-import * as db from "../../Database";
+import { useParams, useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
+import AssignmentDeleter from "./AssignmentDeleter";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = db.assignments;
-    const { pathname } = useLocation();
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const navigate = useNavigate();
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <div>
             <AssignmentsControls /><br /><br /><br /><br />
@@ -22,20 +30,20 @@ export default function Assignments() {
                     {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => (
                         <ListGroup.Item className="wd-lesson p-3 ps-1 d-flex align-items-center">
                             <BsGripVertical className="me-2 fs-3" />
-                            <TfiWrite className="me-4 fs-3 text-success" />
+                            <TfiWrite onClick={() => navigate(`/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`)} className="me-4 fs-3 text-success" />
                             <div className="flex-grow-1">
-                                <Link to={`${pathname}/${assignment._id}`} className="wd-assignment-link text-decoration-none text-reset fw-bold fs-4">
-                                    {assignment._id}
-                                </Link>
-                                <br />
+                                <h2 className="wd-assignment-link text-decoration-none text-reset fw-bold fs-4">
+                                    {assignment.title}
+                                </h2>
                                 <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00 am |
                                 <br />
                                 <b>Due</b> May 13 at 11:59 pm | 100 pts
                             </div>
+                            <FaTrash className="text-danger me-2 mb-1" onClick={handleShow} />
                             <LessonControlButtons />
+                            <AssignmentDeleter show={show} handleClose={handleClose} dialogTitle="Are you sure?" assignmentId={assignment._id} />
                         </ListGroup.Item>
                     ))}
-
                 </ListGroup>
             </ListGroup>
         </div>

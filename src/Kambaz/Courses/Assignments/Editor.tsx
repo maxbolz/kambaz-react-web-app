@@ -1,26 +1,34 @@
 import { FormGroup, FormControl, FormLabel, FormSelect, FormCheck, Button, Row, Col } from "react-bootstrap";
 import AssignmentsControlsFooter from "./AssignmentsControlsFooter";
 import { RxCross2 } from "react-icons/rx";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export default function AssignmentEditor() {
-    const { pathname } = useLocation();
+    const { aid } = useParams();
+    const [assignment, setAssignment] = useState<any>({});
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const [alreadyExists, setAlreadyExists] = useState(false);
+
+    useEffect(() => {
+        const curAssignment = assignments.find((a: any) => a._id === aid);
+        if (curAssignment) {
+            setAssignment(curAssignment);
+            setAlreadyExists(true);
+        }
+    }, [aid, assignments]);
+
     return (
         <div>
             <FormGroup className="mb-4" controlId="wd-assignment-name">
                 <FormLabel>Assignment Name</FormLabel>
-                <FormControl type="text" value={`${pathname.split("/")[5]}`} />
+                <FormControl type="text" value={assignment.title}
+                    onChange={(e) => setAssignment({ ...assignment, title: e.target.value })} />
             </FormGroup>
             <FormGroup className="mb-4">
-                <FormControl as="textarea" rows={9} value="The assignment is available online 
-                
-Submit a link to the landing page of your Web application running on Netlify. 
-
-The landing page should include the following: 
-        •   Your full name and section Links to the Kambaz application 
-        •   Links to all relevant source code repositories 
-
-The Kambaz application should include a link to navigate back to the landing page." />
+                <FormControl as="textarea" rows={9} value={assignment.description}
+                    onChange={(e) => setAssignment({ ...assignment, description: e.target.value })} />
             </FormGroup>
             <div className="container">
                 <div className="d-flex flex-column align-items-end">
@@ -29,7 +37,8 @@ The Kambaz application should include a link to navigate back to the landing pag
                             <FormLabel className="me-2 mb-0 text-nowrap">Points</FormLabel>
                         </Col>
                         <Col xs={8}>
-                            <FormControl type="text" value="100" />
+                            <FormControl type="text" value={assignment.points}
+                                onChange={(e) => setAssignment({ ...assignment, points: e.target.value })} />
                         </Col>
                     </Row>
                     <Row className="mb-4 w-100">
@@ -81,15 +90,18 @@ The Kambaz application should include a link to navigate back to the landing pag
                                     </Button>
                                 </div>
                                 <FormLabel className="fw-bold">Due</FormLabel>
-                                <FormControl type="date" value="2024-05-13" className="mb-4" />
+                                <FormControl type="date" value={assignment.due} className="mb-4"
+                                    onChange={(e) => setAssignment({ ...assignment, due: e.target.value })} />
                                 <Row>
                                     <Col xs={6}>
                                         <FormLabel className="fw-bold text-nowrap">Available from</FormLabel>
-                                        <FormControl type="date" value="2024-05-06" />
+                                        <FormControl type="date" value={assignment.from}
+                                            onChange={(e) => setAssignment({ ...assignment, from: e.target.value })} />
                                     </Col>
                                     <Col xs={6}>
                                         <FormLabel className="fw-bold text-nowrap">Until</FormLabel>
-                                        <FormControl type="date" value="2024-05-20" />
+                                        <FormControl type="date" value={assignment.to}
+                                            onChange={(e) => setAssignment({ ...assignment, to: e.target.value })} />
                                     </Col>
                                 </Row>
                             </FormGroup>
@@ -98,7 +110,7 @@ The Kambaz application should include a link to navigate back to the landing pag
                 </div>
             </div>
             <hr />
-            <AssignmentsControlsFooter />
+            <AssignmentsControlsFooter assignment={assignment} alreadyExists={alreadyExists}/>
         </div>
     );
 }
