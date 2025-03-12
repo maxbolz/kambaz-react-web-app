@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom";
 import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addCourse, updateCourse, deleteCourse, editCourse } from "./Courses/reducer";
-import { enrollments } from "./Database";
 import FacultyProtected from "./Account/FacultyProtected";
+import StudentProtected from "./Account/StudentProtected";
+import { addEnrollment, deleteEnrollment } from "./reducer";
+import { useNavigate } from "react-router";
 
 export default function Dashboard() {
 
+    const [enrollmentStatus, setEnrollmentStatus] = useState(false);
+    const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
+
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { courses } = useSelector((state: any) => state.courseReducer);
-    const filteredCourses = courses.filter((course: any) => enrollments.some((enrollment) => enrollment.user === currentUser._id && enrollment.course === course._id));
+    const filteredCourses = courses.filter((course: any) => enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) || enrollmentStatus);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [curCourse, setCurCourse] = useState<any>({
         _id: "0", name: "New Course", number: "New Number",
@@ -29,7 +34,13 @@ export default function Dashboard() {
 
     return (
         <div id="wd-dashboard">
-            <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+            <div className="d-flex justify-content-between align-items-center">
+                <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+                <StudentProtected>
+                    <Button onClick={() => setEnrollmentStatus(!enrollmentStatus)} variant="primary" className="btn-lg"> Enrollments </Button>
+                </StudentProtected>
+            </div>
+            <hr />
             <FacultyProtected>
                 <div className="d-flex justify-content-between align-items-center">
                     <h5>New Course</h5>
@@ -56,15 +67,17 @@ export default function Dashboard() {
                     {filteredCourses.map((course: any) => (
                         <Col className="wd-dashboard-course" style={{ width: "300px" }}>
                             <Card>
-                                <Link to={`/Kambaz/Courses/${course._id}/Home`}
-                                    className="wd-dashboard-course-link text-decoration-none text-dark" >
+                                <div className="wd-dashboard-course-link text-decoration-none text-dark" >
                                     <Card.Img src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
                                     <Card.Body className="card-body">
                                         <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden text-primary fw-bold">
                                             {course.name} </Card.Title>
                                         <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                                             {course.description} </Card.Text>
-                                        <Button variant="primary"> Go </Button>
+                                        <Button variant="primary" onClick={() => {
+                                            if (enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id))
+                                                navigate(`/Kambaz/Courses/${course._id}/Home`)
+                                        }}> Go </Button>
                                         <FacultyProtected>
                                             <Button onClick={(event) => {
                                                 event.preventDefault();
@@ -85,8 +98,30 @@ export default function Dashboard() {
                                                 Edit
                                             </Button>
                                         </FacultyProtected>
+                                        <StudentProtected>
+                                            <StudentProtected>
+                                                {enrollmentStatus && (
+                                                    enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) ? (
+                                                        <Button onClick={(event) => {
+                                                            event.preventDefault();
+                                                            const enrollmentToDelete = enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id);
+                                                            dispatch(deleteEnrollment(enrollmentToDelete._id))
+                                                        }} className="btn btn-danger float-end" id="wd-delete-course-click">
+                                                            Unenroll
+                                                        </Button>
+                                                    ) : (
+                                                        <Button onClick={(event) => {
+                                                            event.preventDefault();
+                                                            dispatch(addEnrollment({ user: currentUser._id, course: course._id }));
+                                                        }} className="btn btn-success float-end" id="wd-delete-course-click">
+                                                            Enroll
+                                                        </Button>
+                                                    )
+                                                )}
+                                            </StudentProtected>
+                                        </StudentProtected>
                                     </Card.Body>
-                                </Link>
+                                </div>
                             </Card>
                         </Col>
                     ))}
