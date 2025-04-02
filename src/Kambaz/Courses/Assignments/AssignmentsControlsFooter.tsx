@@ -2,6 +2,8 @@ import { Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router";
 import { addAssignment, updateAssignment } from "./reducer";
 import { useDispatch } from "react-redux";
+import * as coursesClient from "../client"
+import * as assignmentsClient from "./client";
 
 export default function AssignmentsControlsFooter({ assignment, alreadyExists }: any) {
 
@@ -11,20 +13,32 @@ export default function AssignmentsControlsFooter({ assignment, alreadyExists }:
 
     const returnBack = () => {
         if (alreadyExists) {
-            dispatch(updateAssignment(assignment));          
+            saveAssignment(assignment);
         }
         else {
-            dispatch(addAssignment({
-                title: assignment.title,
-                course: cid,
-                description: assignment.description,
-                points: assignment.points,
-                due: assignment.due,
-                from: assignment.from,
-                to: assignment.to
-            }));
+            createAssignmentForCourse();
         }
         navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    };
+
+    const createAssignmentForCourse = async () => {
+        if (!cid) return;
+        const newAssignment = {
+            title: assignment.title,
+            course: cid,
+            description: assignment.description,
+            points: assignment.points,
+            due: assignment.due,
+            from: assignment.from,
+            to: assignment.to
+        };
+        const createdAssignment = await coursesClient.createAssignmentForCourse(cid, newAssignment);
+        dispatch(addAssignment(createdAssignment));
+    };
+
+    const saveAssignment = async (assignment: any) => {
+        await assignmentsClient.updateAssignment(assignment);
+        dispatch(updateAssignment(assignment));
     };
 
     return (

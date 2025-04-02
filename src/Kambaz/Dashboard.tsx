@@ -1,20 +1,18 @@
 import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { addCourse, updateCourse, deleteCourse, editCourse } from "./Courses/reducer";
+import { useEffect, useState } from "react";
 import FacultyProtected from "./Account/FacultyProtected";
 import StudentProtected from "./Account/StudentProtected";
 import { addEnrollment, deleteEnrollment } from "./reducer";
 import { useNavigate } from "react-router";
+import * as userClient from "./Account/client";
+import * as courseClient from "./Courses/client";
 
 export default function Dashboard() {
 
     const [enrollmentStatus, setEnrollmentStatus] = useState(false);
     const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
 
-    const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const { courses } = useSelector((state: any) => state.courseReducer);
-    const filteredCourses = courses.filter((course: any) => enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) || enrollmentStatus);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,13 +21,38 @@ export default function Dashboard() {
         startDate: "2023-09-10", endDate: "2023-12-15",
         image: "/images/reactjs.jpg", description: "New Description"
     });
-    const [courseName, setCourseName] = useState(curCourse.name);
-    const [courseDescription, setCourseDescription] = useState(curCourse.description);
 
-    const updateCourseWithCheck = () => {
-        if (!curCourse)
-            return;
-        dispatch(updateCourse({ ...curCourse, name: courseName, description: courseDescription, editing: false }));
+    const [courses, setCourses] = useState<any[]>([]);
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    
+    const fetchCourses = async () => {
+        try {
+            const courses = await userClient.findMyCourses();
+            setCourses(courses);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        fetchCourses();
+    }, [currentUser]);
+
+    const addNewCourse = async () => {
+        const newCourse = await userClient.createCourse(curCourse);
+        setCourses([...courses, newCourse]);
+    };
+
+    const deleteCourse = async (courseId: string) => {
+        await courseClient.deleteCourse(courseId);
+        setCourses(courses.filter((course) => course._id !== courseId));
+    };
+
+    const updateCourse = async () => {
+        await courseClient.updateCourse(curCourse);
+        setCourses(courses.map((c) => {
+            if (c._id === curCourse._id) { return curCourse; }
+            else { return c; }
+        }));
     };
 
     return (
@@ -47,24 +70,24 @@ export default function Dashboard() {
                     <div>
                         <button className="btn btn-primary float-end"
                             id="wd-add-new-course-click"
-                            onClick={() => dispatch(addCourse({ name: courseName, description: courseDescription }))} > Add </button>
+                            onClick={addNewCourse} > Add </button>
                         <button className="btn btn-warning float-end me-2"
-                            onClick={updateCourseWithCheck} id="wd-update-course-click">
+                            onClick={updateCourse} id="wd-update-course-click">
                             Update
                         </button>
                     </div>
                 </div>
                 <br />
-                <FormControl value={courseName} className="mb-2"
-                    onChange={(e) => setCourseName(e.target.value)} />
-                <FormControl as="textarea" value={courseDescription} rows={3}
-                    onChange={(e) => setCourseDescription(e.target.value)} />
+                <FormControl value={curCourse.name} className="mb-2"
+                    onChange={(e) => setCurCourse({ ...curCourse, name: e.target.value })} />
+                <FormControl as="textarea" value={curCourse.description} rows={3}
+                    onChange={(e) => setCurCourse({ ...curCourse, description: e.target.value })} />
                 <hr /><br />
             </FacultyProtected>
-            <h2 id="wd-dashboard-published">Published Courses ({filteredCourses.length})</h2> <hr />
+            <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             <div id="wd-dashboard-courses">
                 <Row xs={1} md={5} className="g-4">
-                    {filteredCourses.map((course: any) => (
+                    {courses.map((course: any) => (
                         <Col className="wd-dashboard-course" style={{ width: "300px" }}>
                             <Card>
                                 <div className="wd-dashboard-course-link text-decoration-none text-dark" >
@@ -81,7 +104,7 @@ export default function Dashboard() {
                                         <FacultyProtected>
                                             <Button onClick={(event) => {
                                                 event.preventDefault();
-                                                dispatch(deleteCourse(course._id));
+                                                deleteCourse(course._id);
                                             }} className="btn btn-danger float-end"
                                                 id="wd-delete-course-click">
                                                 Delete
@@ -89,10 +112,7 @@ export default function Dashboard() {
                                             <Button id="wd-edit-course-click"
                                                 onClick={(event) => {
                                                     event.preventDefault();
-                                                    dispatch(editCourse(course._id));
                                                     setCurCourse(course);
-                                                    setCourseName(course.name);
-                                                    setCourseDescription(course.description);
                                                 }}
                                                 className="btn btn-warning me-2 float-end" >
                                                 Edit

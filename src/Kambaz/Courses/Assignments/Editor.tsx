@@ -110,7 +110,7 @@ export default function AssignmentEditor() {
                 </div>
             </div>
             <hr />
-            <AssignmentsControlsFooter assignment={assignment} alreadyExists={alreadyExists}/>
+            <AssignmentsControlsFooter assignment={assignment} alreadyExists={alreadyExists} />
         </div>
     );
 }
