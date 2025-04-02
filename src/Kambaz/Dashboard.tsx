@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import FacultyProtected from "./Account/FacultyProtected";
 import StudentProtected from "./Account/StudentProtected";
-import { addEnrollment, deleteEnrollment } from "./reducer";
+import { setEnrollments, addEnrollment, deleteEnrollment } from "./reducer";
 import { useNavigate } from "react-router";
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
+import * as enrollmentClient from "./client";
 
 export default function Dashboard() {
 
@@ -24,11 +25,13 @@ export default function Dashboard() {
 
     const [courses, setCourses] = useState<any[]>([]);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    
-    const fetchCourses = async () => {
+
+    const fetchCourses = async (fetchAllCourses: boolean = enrollmentStatus) => {
         try {
-            const courses = await userClient.findMyCourses();
+            const courses = fetchAllCourses ? await courseClient.fetchAllCourses() : await userClient.findMyCourses();
             setCourses(courses);
+            const foundEnrollments = await enrollmentClient.findAllEnrollments();
+            dispatch(setEnrollments(foundEnrollments));
         } catch (error) {
             console.error(error);
         }
@@ -55,12 +58,29 @@ export default function Dashboard() {
         }));
     };
 
+    const enroll = async (event: any, cid: string) => {
+        event.preventDefault();
+        await enrollmentClient.enrollUser(currentUser._id, cid);
+        dispatch(addEnrollment({ user: currentUser._id, course: cid }));
+    };
+
+    const unenroll = async (event: any, cid: string) => {
+        event.preventDefault();
+        await enrollmentClient.unenrollUser(currentUser._id, cid);
+        const enrollmentToDelete = enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === cid);
+        dispatch(deleteEnrollment(enrollmentToDelete._id))
+    };
+
     return (
         <div id="wd-dashboard">
             <div className="d-flex justify-content-between align-items-center">
                 <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
                 <StudentProtected>
-                    <Button onClick={() => setEnrollmentStatus(!enrollmentStatus)} variant="primary" className="btn-lg"> Enrollments </Button>
+                    <Button onClick={async () => {
+                        const newStatus = !enrollmentStatus;
+                        setEnrollmentStatus(newStatus);
+                        await fetchCourses(newStatus);
+                    }} variant="primary" className="btn-lg"> Enrollments </Button>
                 </StudentProtected>
             </div>
             <hr />
@@ -122,18 +142,11 @@ export default function Dashboard() {
                                             <StudentProtected>
                                                 {enrollmentStatus && (
                                                     enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) ? (
-                                                        <Button onClick={(event) => {
-                                                            event.preventDefault();
-                                                            const enrollmentToDelete = enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id);
-                                                            dispatch(deleteEnrollment(enrollmentToDelete._id))
-                                                        }} className="btn btn-danger float-end" id="wd-delete-course-click">
+                                                        <Button onClick={(event) => { unenroll(event, course._id) }} className="btn btn-danger float-end" id="wd-delete-course-click">
                                                             Unenroll
                                                         </Button>
                                                     ) : (
-                                                        <Button onClick={(event) => {
-                                                            event.preventDefault();
-                                                            dispatch(addEnrollment({ user: currentUser._id, course: course._id }));
-                                                        }} className="btn btn-success float-end" id="wd-delete-course-click">
+                                                        <Button onClick={(event) => { enroll(event, course._id) }} className="btn btn-success float-end" id="wd-delete-course-click">
                                                             Enroll
                                                         </Button>
                                                     )
