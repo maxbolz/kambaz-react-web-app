@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { setModules, addModule, editModule, updateModule, deleteModule } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
-import * as coursesClient from "../client";
+import * as courseClient from "../client";
 import * as modulesClient from "./client";
 
 export default function Modules() {
@@ -17,18 +17,20 @@ export default function Modules() {
     const dispatch = useDispatch();
 
     const fetchModules = async () => {
-        const modules = await coursesClient.findModulesForCourse(cid as string);
+        const modules = await courseClient.findModulesForCourse(cid!);
         dispatch(setModules(modules));
     };
     useEffect(() => {
         fetchModules();
-    }, []);
+    }, [cid]);
 
     const createModuleForCourse = async () => {
-        if (!cid) return;
-        const newModule = { name: moduleName, course: cid };
-        const module = await coursesClient.createModuleForCourse(cid, newModule);
-        dispatch(addModule(module));
+        const newModule = await courseClient.createModuleForCourse(cid!, {
+            name: moduleName,
+            course: cid,
+        });
+        dispatch(addModule(newModule));
+        setModuleName("");
     };
 
     const removeModule = async (moduleId: string) => {

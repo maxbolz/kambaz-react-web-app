@@ -35,7 +35,7 @@ export default function Assignments() {
     };
     useEffect(() => {
         fetchAssignments();
-    }, []);
+    }, [cid]);
 
     const formatDate = (dateString: string) => {
         if (!dateString) return "N/A";
