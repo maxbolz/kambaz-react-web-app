@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import * as accountClient from "../Account/client";
 import { useEffect, useState } from "react";
 export default function Courses() {
-    const { cid, uid } = useParams();
+    const { cid } = useParams();
     const [users, setUsers] = useState<any[]>([]);
     const { courses } = useSelector((state: any) => state.courseReducer);
     const course = courses.find((course: any) => course._id === cid);
