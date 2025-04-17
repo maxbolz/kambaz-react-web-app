@@ -1,0 +1,564 @@
+[
+  {
+    "_id": "quiz_12d146ba",
+    "title": "Sample Quiz #1",
+    "description": "<p>This is quiz #1 covering a variety of questions.</p>",
+	"course": "RS101",
+    "quizType": "Practice Quiz",
+    "points": 7,
+    "assignmentGroup": "Project",
+    "shuffleAnswers": true,
+    "timeLimit": 60,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "Manually",
+    "accessCode": "",
+    "oneAtATime": false,
+    "webcamRequired": true,
+    "lockQuestionsAfterAnswering": false,
+    "due": "2025-04-21T16:22:09.699454Z",
+    "available": "2025-04-17T16:22:09.699454Z",
+    "until": "2025-04-23T16:22:09.699454Z",
+    "questions": [
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q5",
+        "type": "true_false",
+        "question": "Lightning never strikes the same place twice.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "Which planet is known as the Red Planet?",
+        "answers": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Venus"
+        ],
+        "correct_answer": "Mars",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "_id": "quiz_b31658df",
+    "title": "Sample Quiz #2",
+    "description": "<p>This is quiz #2 covering a variety of questions.</p>",
+	"course": "RS101",
+    "quizType": "Ungraded Survey",
+    "points": 13,
+    "assignmentGroup": "Project",
+    "shuffleAnswers": false,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "Manually",
+    "accessCode": "",
+    "oneAtATime": false,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "due": "2025-04-23T16:22:09.699681Z",
+    "available": "2025-04-19T16:22:09.699681Z",
+    "until": "2025-04-24T16:22:09.699681Z",
+    "questions": [
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "answers": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correct_answer": "Paris",
+        "points": 5
+      },
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q5",
+        "type": "true_false",
+        "question": "Lightning never strikes the same place twice.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q3",
+        "type": "fill_in_blank",
+        "question": "The chemical symbol for water is ____.",
+        "answers": [],
+        "correct_answer": "H2O",
+        "points": 4
+      }
+    ]
+  },
+  {
+    "_id": "quiz_010f293a",
+    "title": "Sample Quiz #3",
+    "description": "<p>This is quiz #3 covering a variety of questions.</p>",
+	"course": "RS102",
+    "quizType": "Practice Quiz",
+    "points": 6,
+    "assignmentGroup": "Project",
+    "shuffleAnswers": false,
+    "timeLimit": 20,
+    "multipleAttempts": true,
+    "showCorrectAnswers": "Immediately",
+    "accessCode": "",
+    "oneAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "due": "2025-04-22T16:22:09.700057Z",
+    "available": "2025-04-19T16:22:09.700057Z",
+    "until": "2025-04-23T16:22:09.700057Z",
+    "questions": [
+      {
+        "id": "q5",
+        "type": "true_false",
+        "question": "Lightning never strikes the same place twice.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q6",
+        "type": "fill_in_blank",
+        "question": "The largest mammal in the world is the ____.",
+        "answers": [],
+        "correct_answer": "blue whale",
+        "points": 4
+      }
+    ]
+  },
+  {
+    "_id": "quiz_3f209697",
+    "title": "Sample Quiz #4",
+    "description": "<p>This is quiz #4 covering a variety of questions.</p>",
+	"course": "RS101",
+    "quizType": "Ungraded Survey",
+    "points": 9,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": true,
+    "timeLimit": 20,
+    "multipleAttempts": true,
+    "showCorrectAnswers": "Manually",
+    "accessCode": "",
+    "oneAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-22T16:22:09.700201Z",
+    "available": "2025-04-18T16:22:09.700201Z",
+    "until": "2025-04-24T16:22:09.700201Z",
+    "questions": [
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "answers": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correct_answer": "Paris",
+        "points": 5
+      },
+      {
+        "id": "q6",
+        "type": "fill_in_blank",
+        "question": "The largest mammal in the world is the ____.",
+        "answers": [],
+        "correct_answer": "blue whale",
+        "points": 4
+      }
+    ]
+  },
+  {
+    "_id": "quiz_51d07292",
+    "title": "Sample Quiz #5",
+    "description": "<p>This is quiz #5 covering a variety of questions.</p>",
+	"course": "RS103",
+    "quizType": "Practice Quiz",
+    "points": 8,
+    "assignmentGroup": "Assignments",
+    "shuffleAnswers": true,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "Immediately",
+    "accessCode": "",
+    "oneAtATime": true,
+    "webcamRequired": true,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-23T16:22:09.700355Z",
+    "available": "2025-04-18T16:22:09.700355Z",
+    "until": "2025-04-25T16:22:09.700355Z",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "Which planet is known as the Red Planet?",
+        "answers": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Venus"
+        ],
+        "correct_answer": "Mars",
+        "points": 3
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "answers": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correct_answer": "Paris",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "_id": "quiz_a6deff7b",
+    "title": "Sample Quiz #6",
+    "description": "<p>This is quiz #6 covering a variety of questions.</p>",
+	"course": "RS102",
+    "quizType": "Ungraded Survey",
+    "points": 13,
+    "assignmentGroup": "Exams",
+    "shuffleAnswers": false,
+    "timeLimit": 15,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "Manually",
+    "accessCode": "",
+    "oneAtATime": true,
+    "webcamRequired": true,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-21T16:22:09.700518Z",
+    "available": "2025-04-18T16:22:09.700518Z",
+    "until": "2025-04-22T16:22:09.700518Z",
+    "questions": [
+      {
+        "id": "q5",
+        "type": "true_false",
+        "question": "Lightning never strikes the same place twice.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q6",
+        "type": "fill_in_blank",
+        "question": "The largest mammal in the world is the ____.",
+        "answers": [],
+        "correct_answer": "blue whale",
+        "points": 4
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "answers": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correct_answer": "Paris",
+        "points": 5
+      },
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      }
+    ]
+  },
+  {
+    "_id": "quiz_67967b77",
+    "title": "Sample Quiz #7",
+    "description": "<p>This is quiz #7 covering a variety of questions.</p>",
+	"course": "RS105",
+    "quizType": "Practice Quiz",
+    "points": 11,
+    "assignmentGroup": "Assignments",
+    "shuffleAnswers": true,
+    "timeLimit": 15,
+    "multipleAttempts": true,
+    "showCorrectAnswers": "Immediately",
+    "accessCode": "",
+    "oneAtATime": false,
+    "webcamRequired": true,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-21T16:22:09.700819Z",
+    "available": "2025-04-17T16:22:09.700819Z",
+    "until": "2025-04-22T16:22:09.700819Z",
+    "questions": [
+      {
+        "id": "q3",
+        "type": "fill_in_blank",
+        "question": "The chemical symbol for water is ____.",
+        "answers": [],
+        "correct_answer": "H2O",
+        "points": 4
+      },
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "Which planet is known as the Red Planet?",
+        "answers": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Venus"
+        ],
+        "correct_answer": "Mars",
+        "points": 3
+      },
+      {
+        "id": "q5",
+        "type": "true_false",
+        "question": "Lightning never strikes the same place twice.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      }
+    ]
+  },
+  {
+    "_id": "quiz_4aa16a2e",
+    "title": "Sample Quiz #8",
+    "description": "<p>This is quiz #8 covering a variety of questions.</p>",
+	"course": "RS106",
+    "quizType": "Graded Survey",
+    "points": 14,
+    "assignmentGroup": "Exams",
+    "shuffleAnswers": true,
+    "timeLimit": 60,
+    "multipleAttempts": true,
+    "showCorrectAnswers": "Never",
+    "accessCode": "",
+    "oneAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-24T16:22:09.701286Z",
+    "available": "2025-04-19T16:22:09.701286Z",
+    "until": "2025-04-26T16:22:09.701286Z",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "Which planet is known as the Red Planet?",
+        "answers": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Venus"
+        ],
+        "correct_answer": "Mars",
+        "points": 3
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "answers": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correct_answer": "Paris",
+        "points": 5
+      },
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q3",
+        "type": "fill_in_blank",
+        "question": "The chemical symbol for water is ____.",
+        "answers": [],
+        "correct_answer": "H2O",
+        "points": 4
+      }
+    ]
+  },
+  {
+    "_id": "quiz_41c5e085",
+    "title": "Sample Quiz #9",
+    "description": "<p>This is quiz #9 covering a variety of questions.</p>",
+	"course": "RS107",
+    "quizType": "Graded Survey",
+    "points": 7,
+    "assignmentGroup": "Exams",
+    "shuffleAnswers": false,
+    "timeLimit": 60,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "Immediately",
+    "accessCode": "",
+    "oneAtATime": false,
+    "webcamRequired": true,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-21T16:22:09.701575Z",
+    "available": "2025-04-18T16:22:09.701575Z",
+    "until": "2025-04-22T16:22:09.701575Z",
+    "questions": [
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "answers": [
+          "Berlin",
+          "Madrid",
+          "Paris",
+          "Rome"
+        ],
+        "correct_answer": "Paris",
+        "points": 5
+      }
+    ]
+  },
+  {
+    "_id": "quiz_faf53c7e",
+    "title": "Sample Quiz #10",
+    "description": "<p>This is quiz #10 covering a variety of questions.</p>",
+	"course": "RS108",
+    "quizType": "Ungraded Survey",
+    "points": 11,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": false,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "Manually",
+    "accessCode": "8514",
+    "oneAtATime": false,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": true,
+    "due": "2025-04-23T16:22:09.701635Z",
+    "available": "2025-04-19T16:22:09.701635Z",
+    "until": "2025-04-24T16:22:09.701635Z",
+    "questions": [
+      {
+        "id": "q6",
+        "type": "fill_in_blank",
+        "question": "The largest mammal in the world is the ____.",
+        "answers": [],
+        "correct_answer": "blue whale",
+        "points": 4
+      },
+      {
+        "id": "q5",
+        "type": "true_false",
+        "question": "Lightning never strikes the same place twice.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      },
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "Which planet is known as the Red Planet?",
+        "answers": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Venus"
+        ],
+        "correct_answer": "Mars",
+        "points": 3
+      },
+      {
+        "id": "q2",
+        "type": "true_false",
+        "question": "The sun rises in the west.",
+        "answers": [
+          "True",
+          "False"
+        ],
+        "correct_answer": "False",
+        "points": 2
+      }
+    ]
+  }
+]
