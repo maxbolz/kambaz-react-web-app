@@ -58,7 +58,7 @@ export default function Quizzes() {
                                 <h2 className="wd-quiz-link text-decoration-none text-reset fw-bold fs-4">
                                     {quiz.title}
                                 </h2>
-                                <span className="text-danger">{checkAvailable(quiz)}</span> | <b>Due</b> {formatDate(quiz.due)} | <b>{quiz.points}</b> pts | <b>{quiz.questions.length}</b> Questions
+                                <span className="text-danger">{checkAvailable(quiz)}</span> | <b>Due</b> {formatDate(quiz.due)} | <b>{quiz.questions.reduce((total: number, question: any) => total + question.points, 0)}</b> pts | <b>{quiz.questions.length}</b> Questions
                             </div>
                             <QuizControlButtons quiz={quiz}/>
                         </ListGroup.Item>

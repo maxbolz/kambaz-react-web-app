@@ -5,12 +5,14 @@ import FacultyProtected from "../../Account/FacultyProtected";
 import * as quizzesClient from "./client";
 import { deleteQuiz, updateQuiz } from "../Quizzes/reducer";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function QuizControlButtons({ quiz }: { quiz: any }) {
 
     const [showMenu, setShowMenu] = useState(false);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const removeQuiz = async (quizId: string) => {
         await quizzesClient.deleteQuiz(quizId);
@@ -33,7 +35,8 @@ export default function QuizControlButtons({ quiz }: { quiz: any }) {
                         <ul className="list-unstyled m-0 p-2" onMouseLeave={() => setShowMenu(false)}>
                             <li className="p-2 hover-bg" style={{ cursor: "pointer", backgroundColor: "transparent" }}
                                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f0f0f0"}
-                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "transparent"}>
+                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                                onClick={() => navigate(`/Kambaz/Courses/${quiz.course}/Quizzes/${quiz._id}/Editor`)} >
                                 Edit
                             </li>
                             <li className="p-2 hover-bg" style={{ cursor: "pointer", backgroundColor: "transparent" }}

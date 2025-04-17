@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { setQuizzes } from "./reducer";
 import * as quizzesClient from "./client";
 import { Button } from "react-bootstrap";
@@ -13,6 +13,7 @@ export default function QuizDetails() {
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const quiz = quizzes.find((quiz: any) => quiz._id === qid);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const fetchQuiz = async () => {
         const foundQuiz = await quizzesClient.findQuizById(quiz);
         dispatch(setQuizzes(foundQuiz));
@@ -40,7 +41,7 @@ export default function QuizDetails() {
                     <FaEye className="position-relative me-2" style={{ bottom: "1px" }} />
                     Preview
                 </Button>
-                <Button variant="secondary" size="lg" className="me-1" id="wd-add-module-btn">
+                <Button variant="secondary" size="lg" className="me-1" id="wd-add-module-btn" onClick={() => navigate(`/Kambaz/Courses/${quiz.course}/Quizzes/${quiz._id}/Editor`)}>
                     <TfiWrite className="position-relative me-2" style={{ bottom: "1px" }} />
                     Edit
                 </Button>
@@ -58,7 +59,7 @@ export default function QuizDetails() {
                         </tr>
                         <tr>
                             <td className="text-end"><b>Points</b></td>
-                            <td>{quiz.points}</td>
+                            <td>{quiz.questions.reduce((total: number, question: any) => total + question.points, 0)}</td>
                         </tr>
                         <tr>
                             <td className="text-end"><b>Assignment Group</b></td>

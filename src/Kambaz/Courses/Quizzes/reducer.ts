@@ -17,7 +17,6 @@ const quizzesSlice = createSlice({
                 description: quiz.description,
                 course: quiz.course,
                 quizType: quiz.quizType,
-                points: quiz.points,
                 assignmentGroup: quiz.assignmentGroup,
                 shuffleAnswers: quiz.shuffleAnswers,
                 timeLimit: quiz.timeLimit,
