@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { setQuizzes } from "./reducer";
 import * as quizzesClient from "./client";
-import { FormControl, FormCheck } from "react-bootstrap";
 import { FaExclamationCircle, FaCheckCircle } from "react-icons/fa";
 import { FaCircleXmark } from "react-icons/fa6";
 
@@ -13,14 +12,6 @@ export default function QuizResults() {
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const quiz = quizzes.find((quiz: any) => quiz._id === qid);
-    const [response, setResponse] = useState<any>({
-        quiz: quiz,
-        studentId: currentUser._id,
-        answers: quiz?.questions?.map((question: any) => ({
-            questionId: question.id,
-            answer: ""
-        })) || []
-    });
     const [myAttempt, setMyAttempt] = useState<any>();
     const [score, setScore] = useState("");
     const dispatch = useDispatch();
