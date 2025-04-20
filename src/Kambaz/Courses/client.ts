@@ -2,6 +2,7 @@ import axios from "axios";
 const axiosWithCredentials = axios.create({ withCredentials: true });
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
+const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`;
 export const fetchAllCourses = async () => {
     const { data } = await axiosWithCredentials.get(COURSES_API);
     return data;
@@ -50,4 +51,15 @@ export const createQuizForCourse = async (courseId: string, quiz: any) => {
         quiz
     );
     return response.data;
+};
+export const findResponsesForQuiz = async (quizId: string) => {
+    const response = await axios.get(`${QUIZZES_API}/${quizId}/responses`);
+    return response.data;
+};
+export const createResponseForQuiz = async (quizId: string, response: any) => {
+    const r = await axios.post(
+        `${QUIZZES_API}/${quizId}/responses`,
+        response
+    );
+    return r.data;
 };

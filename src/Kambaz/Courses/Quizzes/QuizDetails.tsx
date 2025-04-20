@@ -12,6 +12,7 @@ export default function QuizDetails() {
     const { qid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const quiz = quizzes.find((quiz: any) => quiz._id === qid);
+    if (!quiz) return;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const fetchQuiz = async () => {
@@ -37,11 +38,13 @@ export default function QuizDetails() {
     return (
         <div>
             <div className="d-flex justify-content-center mb-3">
-                <Button variant="secondary" size="lg" className="me-1" id="wd-add-module-btn">
+                <Button variant="secondary" size="lg" className="me-1" id="wd-add-module-btn"
+                    onClick={() => navigate(`/Kambaz/Courses/${quiz.course}/Quizzes/${quiz._id}/Preview`)}>
                     <FaEye className="position-relative me-2" style={{ bottom: "1px" }} />
                     Preview
                 </Button>
-                <Button variant="secondary" size="lg" className="me-1" id="wd-add-module-btn" onClick={() => navigate(`/Kambaz/Courses/${quiz.course}/Quizzes/${quiz._id}/Editor`)}>
+                <Button variant="secondary" size="lg" className="me-1" id="wd-add-module-btn"
+                    onClick={() => navigate(`/Kambaz/Courses/${quiz.course}/Quizzes/${quiz._id}/Editor`)}>
                     <TfiWrite className="position-relative me-2" style={{ bottom: "1px" }} />
                     Edit
                 </Button>

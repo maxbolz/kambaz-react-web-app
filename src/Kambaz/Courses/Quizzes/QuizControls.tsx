@@ -18,7 +18,7 @@ export default function QuizControls() {
             </FormGroup>
             <div>
                 <FacultyProtected>
-                    <Button onClick={() => navigate(`/Kambaz/Courses/${cid}/Quizzes/${uuidv4()}`)} variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
+                    <Button onClick={() => navigate(`/Kambaz/Courses/${cid}/Quizzes/${uuidv4()}/Editor`)} variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
                         <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                         Quiz
                     </Button>

@@ -14,12 +14,12 @@ export default function QuizControlButtons({ quiz }: { quiz: any }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const removeQuiz = async (quizId: string) => {
-        await quizzesClient.deleteQuiz(quizId);
-        dispatch(deleteQuiz(quizId));
+    const removeQuiz = async () => {
+        await quizzesClient.deleteQuiz(quiz._id);
+        dispatch(deleteQuiz(quiz._id));
     };
 
-    const publishUnpublishQuiz = async (quiz: any) => {
+    const publishUnpublishQuiz = async () => {
         const updatedQuiz = { ...quiz, published: !quiz.published };
         await quizzesClient.updateQuiz(updatedQuiz);
         dispatch(updateQuiz(updatedQuiz));
@@ -42,13 +42,13 @@ export default function QuizControlButtons({ quiz }: { quiz: any }) {
                             <li className="p-2 hover-bg" style={{ cursor: "pointer", backgroundColor: "transparent" }}
                                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f0f0f0"}
                                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-                                onClick={() => removeQuiz(quiz._id)}>
+                                onClick={() => removeQuiz()}>
                                 Delete
                             </li>
                             <li className="p-2 hover-bg" style={{ cursor: "pointer", backgroundColor: "transparent" }}
                                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f0f0f0"}
                                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-                                onClick={() => { publishUnpublishQuiz(quiz); setShowMenu(false); }}>
+                                onClick={() => publishUnpublishQuiz()}>
                                 {quiz.published ? "Unpublish" : "Publish"}
                             </li>
                         </ul>

@@ -15,6 +15,7 @@ export default function QuizzesEditor() {
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const [alreadyExists, setAlreadyExists] = useState(false);
     const [timeLimitEnabled, setTimeLimitEnabled] = useState(quiz.timeLimit !== undefined && quiz.timeLimit !== null && quiz.timeLimit > 0);
+    const [multipleAttemptsEnabled, setMultipleAttemptsEnabled] = useState(quiz.attempts > 1);
     const [previousTimeLimit, setPreviousTimeLimit] = useState(quiz.timeLimit || 30);
     const [activeTab, setActiveTab] = useState("details");
 
@@ -124,19 +125,37 @@ export default function QuizzesEditor() {
                                         <FormLabel className="fw-bold">Options</FormLabel>
                                         <FormCheck
                                             label="Shuffle Answers"
-                                            checked={quiz.shuffleAnswers || false}
+                                            checked={quiz.shuffleAnswers || true}
                                             onChange={(e) => setQuiz({ ...quiz, shuffleAnswers: e.target.checked })} />
-                                        <FormCheck
-                                            label="Allow Multiple Attempts"
-                                            checked={quiz.multipleAttempts || false}
-                                            onChange={(e) => setQuiz({ ...quiz, multipleAttempts: e.target.checked })} />
+                                        <div className="d-flex align-items-center">
+                                            <FormCheck
+                                                className="me-2"
+                                                label="Allow Multiple Attempts"
+                                                checked={multipleAttemptsEnabled}
+                                                onChange={(e) => {
+                                                    if (multipleAttemptsEnabled) {
+                                                        setQuiz({ ...quiz, attempts: 1 });
+                                                    } else {
+                                                        setQuiz({ ...quiz, attempts: quiz.attempts });
+                                                    }
+                                                    setQuiz({ ...quiz, multipleAttempts: e.target.checked })
+                                                    setMultipleAttemptsEnabled(!multipleAttemptsEnabled);
+                                                }} />
+                                            {multipleAttemptsEnabled && (
+                                                <div className="w-50 d-flex align-items-center">
+                                                    <FormControl className="w-25 me-2" type="text" value={quiz.attempts > 1 ? quiz.attempts : ""}
+                                                        onChange={(e) => setQuiz({ ...quiz, attempts: parseInt(e.target.value) || 0 })} />
+                                                    attempts
+                                                </div>
+                                            )}
+                                        </div>
                                         <FormCheck
                                             label="Webcam Required"
                                             checked={quiz.webcamRequired || false}
                                             onChange={(e) => setQuiz({ ...quiz, webcamRequired: e.target.checked })} />
                                         <FormCheck
                                             label="One Question at a Time"
-                                            checked={quiz.oneQuestionAtATime || false}
+                                            checked={quiz.oneQuestionAtATime || true}
                                             onChange={(e) => setQuiz({ ...quiz, oneQuestionAtATime: e.target.checked })} />
                                         <FormCheck
                                             label="Lock Questions After Answering"

@@ -6,17 +6,20 @@ import AssignmentEditor from "./Assignments/Editor";
 import Quizzes from "./Quizzes";
 import QuizDetails from "./Quizzes/QuizDetails";
 import QuizEditor from "./Quizzes/Editor";
+import QuizTake from "./Quizzes/QuizTake";
 import PeopleTable from "./People/Table";
 import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import { FaAlignJustify } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import * as accountClient from "../Account/client";
 import { useEffect, useState } from "react";
+import QuizPreview from "./Quizzes/QuizPreview";
 export default function Courses() {
     const { cid } = useParams();
     const [users, setUsers] = useState<any[]>([]);
     const { courses } = useSelector((state: any) => state.courseReducer);
     const course = courses.find((course: any) => course._id === cid);
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { pathname } = useLocation();
     const fetchUsers = async () => {
         const users = await accountClient.findUsersForCourse(cid as string);
@@ -42,7 +45,12 @@ export default function Courses() {
                         <Route path="Assignments" element={<Assignments />} />
                         <Route path="Assignments/:aid" element={<AssignmentEditor />} />
                         <Route path="Quizzes" element={<Quizzes />} />
-                        <Route path="Quizzes/:qid" element={<QuizDetails />} />
+                        {currentUser?.role === "STUDENT" ? (
+                            <Route path="Quizzes/:qid" element={<QuizTake />} />
+                        ) : (
+                            <Route path="Quizzes/:qid" element={<QuizDetails />} />
+                        )}
+                        <Route path="Quizzes/:qid/Preview" element={<QuizPreview />} />
                         <Route path="Quizzes/:qid/Editor" element={<QuizEditor />} />
                         <Route path="People" element={<PeopleTable users={users}/>} />
                     </Routes>
