@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import * as accountClient from "../Account/client";
 import { useEffect, useState } from "react";
 import QuizPreview from "./Quizzes/QuizPreview";
+import QuizResults from "./Quizzes/QuizResults";
 export default function Courses() {
     const { cid } = useParams();
     const [users, setUsers] = useState<any[]>([]);
@@ -51,6 +52,7 @@ export default function Courses() {
                             <Route path="Quizzes/:qid" element={<QuizDetails />} />
                         )}
                         <Route path="Quizzes/:qid/Preview" element={<QuizPreview />} />
+                        <Route path="Quizzes/:qid/Results" element={<QuizResults />} />
                         <Route path="Quizzes/:qid/Editor" element={<QuizEditor />} />
                         <Route path="People" element={<PeopleTable users={users}/>} />
                     </Routes>

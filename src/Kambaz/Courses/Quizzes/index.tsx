@@ -78,7 +78,9 @@ export default function Quizzes() {
                                     className="me-4 fs-3 text-success"
                                 />
                             ) :
-                                <FaCheckCircle className="me-4 fs-3 text-success"></FaCheckCircle>}
+                                <FaCheckCircle
+                                    onClick={() => navigate(`/Kambaz/Courses/${quiz.course}/Quizzes/${quiz._id}/Results`)}
+                                    className="me-4 fs-3 text-success"></FaCheckCircle>}
                             <div className="flex-grow-1">
                                 <h2 className="wd-quiz-link text-decoration-none text-reset fw-bold fs-4">
                                     {quiz.title}
