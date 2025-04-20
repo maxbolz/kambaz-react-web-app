@@ -31,7 +31,8 @@
         "False"
       ],
       "correct_answer": "False",
-      "points": 2
+      "points": 2,
+      "id": "q0"
     },
     {
       "type": "true_false",
@@ -40,8 +41,9 @@
         "True",
         "False"
       ],
-      "correct_answer": "False",
-      "points": 2
+      "correct_answer": "True",
+      "points": 2,
+      "id": "q1"
     },
     {
       "type": "multiple_choice",
@@ -52,7 +54,8 @@
         "Jupiter"
       ],
       "correct_answer": "Mars",
-      "points": 3
+      "points": 3,
+      "id": "q2"
     }
   ],
   "published": true,
@@ -93,7 +96,8 @@
         "Rome"
       ],
       "correct_answer": "Paris",
-      "points": 5
+      "points": 5,
+      "id": "q1"
     },
     {
       "type": "true_false",
@@ -103,7 +107,8 @@
         "False"
       ],
       "correct_answer": "False",
-      "points": 2
+      "points": 2,
+      "id": "q2"
     },
     {
       "type": "true_false",
@@ -113,14 +118,16 @@
         "False"
       ],
       "correct_answer": "False",
-      "points": 2
+      "points": 2,
+      "id": "q3"
     },
     {
       "type": "fill_in_blank",
       "question": "The chemical symbol for water is ____.",
       "answers": [],
       "correct_answer": "H2O",
-      "points": 4
+      "points": 4,
+      "id": "q4"
     }
   ],
   "published": true,

@@ -8,6 +8,7 @@ import Editor from 'react-simple-wysiwyg';
 import { RxCross2 } from "react-icons/rx";
 import { Tabs, Tab } from "react-bootstrap";
 import { FaArrowRight, FaTrash } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 export default function QuizzesEditor() {
     const { qid } = useParams();
@@ -382,6 +383,7 @@ export default function QuizzesEditor() {
                             onClick={() => {
                                 const newQuestion = {
                                     type: "multiple_choice",
+                                    id: uuidv4(),
                                     question: "",
                                     answers: [],
                                     correct_answer: "",
