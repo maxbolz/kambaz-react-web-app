@@ -11,8 +11,8 @@ export const updateQuiz = async (quiz: any) => {
     const { data } = await axiosWithCredentials.put(`${QUIZZES_API}/${quiz._id}`, quiz);
     return data;
 };
-export const findQuizById = async (quiz: any) => {
-    const response = await axiosWithCredentials.get(`${QUIZZES_API}/${quiz._id}`);
+export const findQuizById = async (quizId: any) => {
+    const response = await axiosWithCredentials.get(`${QUIZZES_API}/${quizId}`);
     return response.data;
 };
 export const deleteResponse = async (responseId: string) => {

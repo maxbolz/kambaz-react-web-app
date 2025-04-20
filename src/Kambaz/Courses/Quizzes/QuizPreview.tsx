@@ -25,7 +25,7 @@ export default function QuizPreview() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const dispatch = useDispatch();
     const fetchQuiz = async () => {
-        const foundQuiz = await quizzesClient.findQuizById(quiz);
+        const foundQuiz = await quizzesClient.findQuizById(quiz._id);
         dispatch(setQuizzes(foundQuiz));
     }
     useEffect(() => {

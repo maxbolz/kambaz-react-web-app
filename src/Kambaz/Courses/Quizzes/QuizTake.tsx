@@ -24,7 +24,7 @@ export default function QuizTake() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const fetchQuiz = async () => {
-        const foundQuiz = await quizzesClient.findQuizById(quiz);
+        const foundQuiz = await quizzesClient.findQuizById(quiz._id);
         dispatch(setQuizzes(foundQuiz));
     }
     useEffect(() => {
