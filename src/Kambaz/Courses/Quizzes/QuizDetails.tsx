@@ -12,16 +12,17 @@ export default function QuizDetails() {
     const { qid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const quiz = quizzes.find((quiz: any) => quiz._id === qid);
-    if (!quiz) return;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const fetchQuiz = async () => {
-        const foundQuiz = await quizzesClient.findQuizById(quiz._id);
+        const foundQuiz = await quizzesClient.findQuizById(qid);
         dispatch(setQuizzes(foundQuiz));
     }
     useEffect(() => {
         fetchQuiz();
-    }, [quiz._id]);
+    }, [qid]);
+
+    if (!quiz) return;
 
     const formatDate = (dateString: string) => {
         if (!dateString) return "N/A";
