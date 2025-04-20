@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { setQuizzes } from "./reducer";
 import * as quizzesClient from "./client";
-import * as coursesClient from "../client";
 import { Button } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
