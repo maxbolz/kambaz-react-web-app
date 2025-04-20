@@ -7,7 +7,7 @@
   "assignmentGroup": "Quizzes",
   "shuffleAnswers": false,
   "timeLimit": 30,
-  "multipleAttempts": false,
+  "multipleAttempts": true,
   "showCorrectAnswers": "Manually",
   "accessCode": "",
   "oneAtATime": false,
@@ -51,11 +51,12 @@
         "Mars",
         "Jupiter"
       ],
-      "correct_answer": "Earth",
+      "correct_answer": "Mars",
       "points": 3
     }
   ],
-  "published": false
+  "published": true,
+  "attempts": 3
 },
 {
   "_id": "quiz_b31658df",
@@ -122,7 +123,8 @@
       "points": 4
     }
   ],
-  "published": false
+  "published": true,
+  "attempts": 1
 },
 {
   "_id": "quiz_010f293a",
@@ -163,50 +165,8 @@
       "points": 4
     }
   ],
-  "published": false
-},
-{
-  "_id": "quiz_3f209697",
-  "title": "Sample Quiz #4",
-  "description": "<p>This is quiz #4 covering a variety of questions.</p>",
-  "course": "RS101",
-  "quizType": "Ungraded Survey",
-  "assignmentGroup": "Quizzes",
-  "shuffleAnswers": true,
-  "timeLimit": 20,
-  "multipleAttempts": true,
-  "showCorrectAnswers": "Manually",
-  "accessCode": "",
-  "oneAtATime": true,
-  "webcamRequired": false,
-  "lockQuestionsAfterAnswering": true,
-  "due": "2025-04-22T16:22:09.700201Z",
-  "available": "2025-04-18T16:22:09.700201Z",
-  "until": "2025-04-24T16:22:09.700201Z",
-  "questions": [
-    {
-      "id": "q4",
-      "type": "multiple_choice",
-      "question": "What is the capital of France?",
-      "answers": [
-        "Berlin",
-        "Madrid",
-        "Paris",
-        "Rome"
-      ],
-      "correct_answer": "Paris",
-      "points": 5
-    },
-    {
-      "id": "q6",
-      "type": "fill_in_blank",
-      "question": "The largest mammal in the world is the ____.",
-      "answers": [],
-      "correct_answer": "blue whale",
-      "points": 4
-    }
-  ],
-  "published": false
+  "published": false,
+  "attempts": 5
 },
 {
   "_id": "quiz_51d07292",
@@ -254,7 +214,8 @@
       "points": 5
     }
   ],
-  "published": false
+  "published": false,
+  "attempts": 1
 },
 {
   "_id": "quiz_a6deff7b",
@@ -319,7 +280,8 @@
       "points": 2
     }
   ],
-  "published": false
+  "published": false,
+  "attempts": 1
 },
 {
   "_id": "quiz_67967b77",
@@ -384,7 +346,8 @@
       "points": 2
     }
   ],
-  "published": false
+  "published": false,
+  "attempts": 3
 },
 {
   "_id": "quiz_4aa16a2e",
@@ -451,7 +414,8 @@
       "points": 4
     }
   ],
-  "published": false
+  "published": false,
+  "attempts": 5
 },
 {
   "_id": "quiz_41c5e085",
@@ -497,7 +461,8 @@
       "points": 5
     }
   ],
-  "published": false
+  "published": false,
+  "attempts": 1
 },
 {
   "_id": "quiz_faf53c7e",
@@ -562,5 +527,54 @@
       "points": 2
     }
   ],
-  "published": false
+  "published": false,
+  "attempts": 1
+},
+{
+  "_id": "quiz_3f209697",
+  "title": "Sample Quiz #4",
+  "description": "<p>This is quiz #4 covering a variety of questions.</p>",
+  "course": "RS101",
+  "quizType": "Ungraded Survey",
+  "assignmentGroup": "Quizzes",
+  "shuffleAnswers": true,
+  "timeLimit": 20,
+  "multipleAttempts": true,
+  "showCorrectAnswers": "Manually",
+  "accessCode": "",
+  "oneAtATime": true,
+  "webcamRequired": false,
+  "lockQuestionsAfterAnswering": true,
+  "due": {
+    "$date": "2025-04-22T16:22:09.700Z"
+  },
+  "available": {
+    "$date": "2025-04-18T16:22:09.700Z"
+  },
+  "until": {
+    "$date": "2025-04-24T16:22:09.700Z"
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "question": "What is the capital of France?",
+      "answers": [
+        "Berlin",
+        "Madrid",
+        "Paris",
+        "Rome"
+      ],
+      "correct_answer": "Paris",
+      "points": 5
+    },
+    {
+      "type": "fill_in_blank",
+      "question": "The largest mammal in the world is the ____.",
+      "answers": [],
+      "correct_answer": "blue whale",
+      "points": 4
+    }
+  ],
+  "published": false,
+  "attempts": 1
 }]
